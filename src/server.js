@@ -31,6 +31,10 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
+
+    socket.on('chat', (msg) => {
+        io.emit('chat', socket.id + ' : ' + msg);
+    });
 });
 
 server.listen(port, () => {
