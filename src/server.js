@@ -26,14 +26,17 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log(`${socket.id} connected`);
 
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
 
     socket.on('chat', (msg) => {
-        io.emit('chat', socket.id + ' : ' + msg);
+        io.emit('chat', JSON.stringify({
+            id: socket.id,
+            message: msg
+        }));
     });
 });
 
