@@ -1,10 +1,15 @@
 module.exports = {
-  message: async(req, res, next) => {
-    const { msg } = req.query;
-    _io.emit("chat", msg);
+  message: async (req, res, next) => {
+    const body = req.body;
+    _io.emit(
+      "chat",
+      JSON.stringify({
+        message: body.message,
+      })
+    );
     res.json({
       code: 200,
-      message: msg,
+      message: body.message,
     });
   },
 };

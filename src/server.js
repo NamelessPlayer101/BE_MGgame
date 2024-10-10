@@ -14,10 +14,6 @@ app.use(
     })
 )
 
-app.get('/', (req, res) => {
-    res.json('Hello World!');
-});
-
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
@@ -26,10 +22,12 @@ const io = new Server(server, {
     }
 });
 global._io = io;
-
 global._io.on('connection', SocketService.connection);
 
-// app.use(require('./api/routes/chat.route'));
+app.get('/', (req, res) => {
+    res.json('Hello World!');
+});
+app.use('/chat', require('./api/routes/chat.route'));
 
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
