@@ -6,9 +6,21 @@ class SocketService {
       console.log(`reason: ${reason}`);
     });
 
+    // Chat
     socket.on("chat", (msg) => {
       _io.emit(
         "chat",
+        JSON.stringify({
+          id: socket.id,
+          message: msg,
+        })
+      );
+    });
+
+    // Game
+    socket.on("game", (msg) => {
+      _io.emit(
+        "game",
         JSON.stringify({
           id: socket.id,
           message: msg,
