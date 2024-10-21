@@ -6,6 +6,11 @@ class SocketService {
       console.log(`reason: ${reason}`);
     });
 
+    // Ping
+    socket.on("ping", (callback) => {
+      callback();
+    });
+
     // Chat
     socket.on("chat", (msg) => {
       _io.emit(

@@ -20,6 +20,8 @@ const io = new Server(server, {
     origin: "*",
     methods: ["GET", "POST"],
   },
+  pingInterval: 10000,
+  pingTimeout: 30000,
 });
 global._io = io;
 global._io.on("connection", SocketService.connection);
