@@ -23,12 +23,12 @@ class SocketService {
     });
 
     // Game
-    socket.on("game", (msg) => {
+    socket.on("game", () => {
       _io.emit(
         "game",
         JSON.stringify({
           id: socket.id,
-          message: msg,
+          message: 'Hehe',
         })
       );
     });
