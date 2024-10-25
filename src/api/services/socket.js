@@ -44,7 +44,7 @@ class SocketService {
       );
     });
 
-    socket.on("updatePlayers", (data) => {
+    socket.on("updatePlayers", () => {
       const playerInit = JSON.parse(data);
       backEndPlayers[socket.id] = {
         ...playerInit,
